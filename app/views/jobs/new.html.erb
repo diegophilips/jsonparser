@@ -1,0 +1,9 @@
+<%= simple_form_for @job, html: { multipart: true } do |f| %>
+      <%= f.simple_fields_for :attached_files do |af| %>
+        <%= af.input :file, as: :file, label: false, required: true %>
+      <% end %>
+      <%= f.button :submit,
+                   'Upload File',
+                   class: 'btn btn-mini btn-success hidden',
+                   id: 'submit-file-upload' %>
+<% end %>
