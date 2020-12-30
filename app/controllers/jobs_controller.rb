@@ -32,7 +32,12 @@ class JobsController < ApplicationController
   end
 
   def index
-    @jobs = Job.all
+    if params[:query].present?
+      sql_query = "location ILIKE :query OR company_name ILIKE :query OR title ILIKE :query"
+      @jobs = Job.where(sql_query, query: "%#{params[:query]}%").paginate(page: params[:page], per_page: 10)
+    else
+      @jobs = Job.paginate(page: params[:page], per_page: 10)
+    end
   end
 
   private
@@ -42,8 +47,4 @@ class JobsController < ApplicationController
     serialized_jobs = File.read(filepath)
     jobs = JSON.parse(serialized_jobs)
   end
-
-    #def new_job_params
-    #params.require(:jobs).permit(:job_number, :title, :description, :company_name, :url, :location, :salary, :closing_date, :required_attributes, :responsabilities, :benefits, :apply)
-    #end
 end

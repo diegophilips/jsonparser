@@ -1,0 +1,39 @@
+.search-bar {
+  padding: 16px
+}
+
+table {
+  max-width: 100%;
+  color: white;
+}
+
+.pagination {
+  padding: 16px;
+  margin: auto;
+}
+
+tr {
+  border-bottom: 1px solid;
+  max-width: 20vh
+}
+
+th {
+  background-color: #555;
+  color: #fff;
+}
+
+th,td {
+  text-align: center;
+  padding: 0.5em 1em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+td {
+max-width: 60px;
+max-height: 60px;
+overflow: hidden;
+}
+
+
