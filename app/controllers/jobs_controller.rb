@@ -1,18 +1,34 @@
 class JobsController < ApplicationController
-
   def new
     @job = Job.new
   end
 
   def create
-    raise
-    json_upload
-    @job = Job.new(jobs_param)
-    if @job.save
-      flash.now[:notice] = 'Your file was successfully imported'
-    else
-      render :new
-    end
+    jobs = json_upload
+    jobs.each do |job|
+   new_job_params = {
+      title: job['Title'],
+      job_number: job['JobNumber'],
+      description: job['Description'],
+      company_name: job['CompanyName'],
+      url: job['Url'],
+      location: job['Location'],
+      salary: job['Salary'],
+      closing_date: job['ClosingDate'],
+      required_attributes: job['RequiredAttributes'],
+      responsabilities: job['Responsilibities'],
+      benefits: job['Benefits'],
+      apply: job['Apply']
+                    }
+   Job.create(new_job_params)
+              end
+    #if @jobs.save
+      redirect_to new_job_path
+      flash[:notice] = 'Your file was successfully imported'
+
+    #else
+     # render :new
+    #end
   end
 
   def index
@@ -22,12 +38,12 @@ class JobsController < ApplicationController
   private
 
   def json_upload
-    #filepath = simple_form_for
-    serialized_jobs = File.read
+    filepath = params[:job][:attached_files][:file]
+    serialized_jobs = File.read(filepath)
     jobs = JSON.parse(serialized_jobs)
   end
 
-  def jobs_param
-    params.permit(:file)
-  end
+    #def new_job_params
+    #params.require(:jobs).permit(:job_number, :title, :description, :company_name, :url, :location, :salary, :closing_date, :required_attributes, :responsabilities, :benefits, :apply)
+    #end
 end

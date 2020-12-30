@@ -1,0 +1,22 @@
+
+<table>
+  <tr>
+    <th>Job Number</th>
+    <th>Title</th>
+    <th>Company Name</th>
+    <th>URL</th>
+    <th>Description</th>
+    <th>Location</th>
+    <th>Salary</th>
+    <th>Closing Date</th>
+    <th>Required Attributes</th>
+    <th>Responsibilities</th>
+    <th>Benefits</th>
+    <th>Apply</th>
+  </tr>
+  <tc>
+    <% @jobs.each do |job| %>
+    <td><%= job.title  %></td>
+    <% end %>
+  </tc>
+</table>
