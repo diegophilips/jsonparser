@@ -3,8 +3,10 @@
 }
 
 table {
-  max-width: 100%;
+  border: thin solid;
+  width: 100%;
   color: white;
+  border-radius: 16px;
 }
 
 .pagination {
@@ -13,8 +15,7 @@ table {
 }
 
 tr {
-  border-bottom: 1px solid;
-  max-width: 20vh
+ border-bottom: thin solid;
 }
 
 th {
@@ -31,9 +32,9 @@ th,td {
 }
 
 td {
-max-width: 60px;
-max-height: 60px;
-overflow: hidden;
+overflow-wrap: break-word;
+max-width: 10vh;
+content: fit;
 }
 
 
