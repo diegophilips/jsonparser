@@ -10,6 +10,7 @@
                      class: 'btn-primary btn-mini btn-success hidden',
                      id: 'submit-file-upload' %>
         <% end %>
+          <div class="notice"><%= flash[:notice]%></div>
   </div>
   <%= link_to 'See all Jobs', jobs_path, class: 'btn-primary btn-mini btn-success hidden' %><br>
 </div>

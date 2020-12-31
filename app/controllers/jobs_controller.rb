@@ -24,15 +24,19 @@ class JobsController < ApplicationController
     end
     if @job.save
       redirect_to new_job_path
-      flash[:notice] = 'Your file was successfully imported'
+      flash.now[:notice] = 'Your file was successfully imported'
     else
+      flash.now[:notice] = 'There was a problem with your file'
       render :new
     end
   end
 
   def index
     if params[:query].present?
-      sql_query = 'location ILIKE :query OR company_name ILIKE :query OR title ILIKE :query'
+      sql_query = 'location ILIKE :query OR company_name ILIKE :query
+                     OR title ILIKE :query OR description ILIKE :query OR required_attributes
+                     ILIKE :query OR responsabilities ILIKE :query OR
+                     benefits ILIKE :query'
       @jobs = Job.where(sql_query, query: "%#{params[:query]}%").paginate(page: params[:page], per_page: 10)
     else
       @jobs = Job.paginate(page: params[:page], per_page: 10)

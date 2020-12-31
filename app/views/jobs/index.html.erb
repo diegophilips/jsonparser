@@ -4,7 +4,7 @@
     <%= text_field_tag :query,
     params[:query],
     class: "form-control index-page-search",
-    placeholder: "Search by company name,location or title"
+    placeholder: "Search for your dream job"
     %>
     <%= submit_tag "Search", class: "btn btn-primary" %>
     <% end %>
@@ -14,24 +14,24 @@
     <thead>
       <tr>
         <th>Title</th>
-        <th>Company Name</th>
+        <th class="s-col">Company Name</th>
         <th>Description</th>
         <th>Location</th>
         <th>Required Attributes</th>
         <th>Responsibilities</th>
-        <th>More informations</th>
+        <th class="s-col">More informations</th>
       </tr>
     </thead>
     <tbody>
       <% @jobs.each do |job| %>
       <tr>
         <td><%= job.title  %></td>
-        <td><%= job.company_name  %></td>
+        <td class="s-col"><%= job.company_name  %></td>
         <td><%= job.description  %></td>
         <td><%= job.location  %></td>
         <td><%= job.required_attributes%></td>
         <td><%= job.responsabilities.delete! '[]""'%></td>
-        <td><%= link_to "See more", job_path(job) %>
+        <td class="s-col"><%= link_to "See more", job_path(job) %>
         <% end %>
       </tr>
     </tbody>
@@ -40,6 +40,7 @@
   <div class="pagination">
     <%= will_paginate @jobs %>
   </div>
+  <div class="button">
     <% if params[:query].present? %>
     <%= link_to 'Back', jobs_path, class: 'btn-primary btn-mini btn-success hidden' %>
     <%else %>

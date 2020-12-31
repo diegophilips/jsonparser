@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -12,24 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_201_229_123_120) do
-  # These are extensions that must be enabled in order to support this database
-  enable_extension 'plpgsql'
+ActiveRecord::Schema.define(version: 2020_12_31_144445) do
 
-  create_table 'jobs', force: :cascade do |t|
-    t.integer 'job_number'
-    t.string 'title'
-    t.string 'company_name'
-    t.string 'url'
-    t.text 'description'
-    t.string 'location'
-    t.integer 'salary'
-    t.date 'closing_date'
-    t.text 'required_attributes'
-    t.text 'responsabilities'
-    t.text 'benefits'
-    t.text 'apply'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "jobs", force: :cascade do |t|
+    t.integer "job_number"
+    t.string "title"
+    t.string "company_name"
+    t.string "url"
+    t.text "description"
+    t.string "location"
+    t.string "salary"
+    t.date "closing_date"
+    t.text "required_attributes"
+    t.text "responsabilities"
+    t.text "benefits"
+    t.text "apply"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
+
 end
