@@ -6,33 +6,41 @@ class JobsController < ApplicationController
   def create
     jobs = json_upload
     jobs.each do |job|
-   new_job_params = {
-      title: job['Title'],
-      job_number: job['JobNumber'],
-      description: job['Description'],
-      company_name: job['CompanyName'],
-      url: job['Url'],
-      location: job['Location'],
-      salary: job['Salary'],
-      closing_date: job['ClosingDate'],
-      required_attributes: job['RequiredAttributes'],
-      responsabilities: job['Responsilibities'],
-      benefits: job['Benefits'],
-      apply: job['Apply']
-                    }
-   Job.create(new_job_params)
-              end
-    #if @jobs.save
+      new_job_params = {
+        title: job['Title'],
+        job_number: job['JobNumber'],
+        description: job['Description'],
+        company_name: job['CompanyName'],
+        url: job['Url'],
+        location: job['Location'],
+        salary: job['Salary'],
+        closing_date: job['ClosingDate'],
+        required_attributes: job['RequiredAttributes'],
+        responsabilities: job['Responsilibities'],
+        benefits: job['Benefits'],
+        apply: job['Apply']
+      }
+      @job = Job.new(new_job_params)
+    end
+    if @job.save
       redirect_to new_job_path
       flash[:notice] = 'Your file was successfully imported'
-
-    #else
-     # render :new
-    #end
+    else
+      render :new
+    end
   end
 
   def index
-    @jobs = Job.all
+    if params[:query].present?
+      sql_query = 'location ILIKE :query OR company_name ILIKE :query OR title ILIKE :query'
+      @jobs = Job.where(sql_query, query: "%#{params[:query]}%").paginate(page: params[:page], per_page: 10)
+    else
+      @jobs = Job.paginate(page: params[:page], per_page: 10)
+    end
+  end
+
+  def show
+    @job = Job.find(params[:id])
   end
 
   private
@@ -42,8 +50,4 @@ class JobsController < ApplicationController
     serialized_jobs = File.read(filepath)
     jobs = JSON.parse(serialized_jobs)
   end
-
-    #def new_job_params
-    #params.require(:jobs).permit(:job_number, :title, :description, :company_name, :url, :location, :salary, :closing_date, :required_attributes, :responsabilities, :benefits, :apply)
-    #end
 end

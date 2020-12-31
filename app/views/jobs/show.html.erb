@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="job-card">
+    <h3><%=@job.title%></h3>
+    <h4><%=@job.location%></h4>
+    <p><%=@job.description %></p>
+    <p>Required Attributes</p>
+    <p><%=@job.required_attributes%><p>
+    <p>Responsibilities</p>
+    <p><%=@job.responsabilities.delete! '[]""'%><p>
+    <p>Benefits</p>
+    <p><%=@job.benefits.delete! '[]""'%>
+    <p>Salary: <%=@job.salary%>
+    <p><%=@job.url%></p>
+  </div>
+  <div><%= link_to 'Back', jobs_path, class: 'btn-primary btn-mini btn-success hidden' %><br></div>
+</div>
