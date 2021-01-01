@@ -20,11 +20,11 @@ class JobsController < ApplicationController
         benefits: job['Benefits'],
         apply: job['Apply']
       }
-      @job = Job.new(new_job_params)
+      @job = Job.create(new_job_params)
     end
     if @job.save
       redirect_to new_job_path
-      flash.now[:notice] = 'Your file was successfully imported'
+      flash[:notice] = 'Your file was successfully imported'
     else
       flash.now[:notice] = 'There was a problem with your file'
       render :new
