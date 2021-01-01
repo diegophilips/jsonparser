@@ -1,12 +1,18 @@
 .search-bar {
-  padding: 16px
+  padding: 16px;
+  width: 90%;
+  margin:auto;
+  margin-top: 32px;
 }
 
 table {
   border: thin solid;
-  width: 100%;
+  width: 90%;
   color: white;
   border-radius: 16px;
+  align-items: center;
+  margin: auto;
+  margin-top: 16px;
 }
 
 .pagination {
@@ -24,17 +30,18 @@ th {
 }
 
 th,td {
-  text-align: center;
   padding: 0.5em 1em;
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
+  //text-overflow: ellipsis;
+  overflow-wrap: break-word;
 }
 
 td {
-overflow-wrap: break-word;
 max-width: 10vh;
 content: fit;
 }
 
-
+.s-col{
+  width: 8px;
+}
